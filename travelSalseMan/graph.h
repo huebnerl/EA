@@ -7,6 +7,7 @@
 
 class Graph{
 	public:
+		int infinityValue;
 		std::vector<std::vector<int>> graph;
 		Graph();
 		void repr();

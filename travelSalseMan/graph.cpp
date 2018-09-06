@@ -1,6 +1,7 @@
 #include "graph.h"
 
 Graph::Graph(){
+	this->infinityValue = 100;
 	std::vector<std::vector<int>> vect {
 		{0,2,0,4,0,4,0,0,0,0},
 		{2,0,3,7,2,0,0,0,0,0},

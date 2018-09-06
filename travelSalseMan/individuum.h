@@ -12,10 +12,12 @@ class Individuum{
 		std::vector<int> path;
 		std::shared_ptr<Graph> graph_obj;
 	public:
-		int distance;
+		float distance;
 
 		Individuum(std::shared_ptr<Graph> graph);
 		int getDist();
+		std::vector<int> getPath();
+		float getFitness();
 		void evaluate();
 		void recombine(Individuum* i1, Individuum* i2);
 		void repr();

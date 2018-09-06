@@ -24,6 +24,7 @@ class Population{
 		void reduce(float ratio=0.3);
 		void repopulate(int size);
 		Parents selectParents();
+		Individuum* selectParent();
 		
 };
 
