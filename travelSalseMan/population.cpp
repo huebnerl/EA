@@ -21,7 +21,7 @@ float Population::evaluate(){
 	return result / this->size;
 }
 
-//TODO
+//TODO sort by fittness and delete the two worst
 void Population::reduce(float ratio){
 	std::sort(this->pop.begin(), this->pop.end(), comperator);
 	int seperator = this->size * ratio;
@@ -30,14 +30,17 @@ void Population::reduce(float ratio){
 	this->size = this->pop.size();
 }
 
-//TODO
+//TODO check if the new indis are already in the Population
 void Population::repopulate(int size){
-	for (int i = 0; i < size - this->size; ++i){
-		Parents p = this->selectParents();
-		Individuum* indi = new Individuum(this->graph);
-		indi->recombine(p.muther, p.vather);
-		this->pop.push_back(indi);
-	}	
+	Parents p = this->selectParents();
+	Individuum* indi1 = new Individuum(this->graph);
+	Individuum* indi2 = new Individuum(this->graph);
+
+	int random = std::rand() % indi1->getPath().size()-1;
+	indi1->recombine(p.muther, p.vather, random);
+	indi2->recombine(p.vather, p.muther, random);
+	this->pop.push_back(indi1);
+	this->pop.push_back(indi2);
 }
 
 Parents Population::selectParents(){

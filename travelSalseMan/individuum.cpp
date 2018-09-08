@@ -30,8 +30,21 @@ void Individuum::evaluate(){
 	this->distance = tmp_dist;
 }
 
-void Individuum::recombine(Individuum* i1, Individuum* i2){
-
+void Individuum::recombine(Individuum* i1, Individuum* i2, int crossOverPoint){
+	std::vector<int> i1path = i1->getPath();
+	std::vector<int> i2path = i2->getPath();
+	int tmp_crossOverPoint = crossOverPoint;
+	for (int i = 0; i <= tmp_crossOverPoint; ++i){
+		this->path[i] = i1path[i];
+	}
+	for (int i = 1; i < i2path.size()-1; ++i){
+		std::vector<int>::iterator itr = std::find(this->path.begin(),
+				this->path.end(), i2path[i]);
+		if (!(std::distance(this->path.begin(), itr) <= tmp_crossOverPoint
+			&& std::distance(this->path.begin(), itr) > 0)) {
+			this->path[++tmp_crossOverPoint] = i2path[i];
+		}
+	}
 }
 
 int Individuum::getDist(){
